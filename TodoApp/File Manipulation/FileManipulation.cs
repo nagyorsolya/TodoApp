@@ -8,19 +8,18 @@ namespace TodoApp.File_Manipulation
 {
     class FileManipulation
     {
-       public void ListFiles(string[] list)
+       public static void ListFiles(List<string> list)
         {
-            for (int i = 0; i < list.Length; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 Console.WriteLine(i + 1 + ". " + list[i]);
             }
         }
-        public void AddItem(string newTodo, string[] list)
+        public static void AddItem(string newTodo, List<string> list)
         {
-            Array.Resize(ref list, list.Length + 1);
-            list[list.Length - 1] = newTodo;
+            List<string> converted = list.ToList<string>();
+            converted.Add(newTodo);
             Console.WriteLine("New todo is added to the list.");
-            Console.WriteLine(list);
         }
     }
 }

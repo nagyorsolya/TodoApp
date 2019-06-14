@@ -11,20 +11,19 @@ namespace TodoApp
     {
         static void Main(string[] args)
         {
-            FileManipulation fileManipulation = new FileManipulation();
-            string[] todoList = System.IO.File.ReadAllLines(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt");
-            Console.WriteLine("What would you like to do today?: " + "\n" + "l - list todos" + "\n" + "a - add todo" + "\n" + "r - remove todo" + "\n" + "c - complete todo");
+            List<string> todoList = System.IO.File.ReadAllLines(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt").ToList<string>();
+
+            Console.WriteLine("What would you like to do today?: \nl - list todos\na - add todo\nr - remove todo\nc - complete todo");
             string firstInput = Console.ReadLine();
             if (firstInput == "l")
             {
-                fileManipulation.ListFiles(todoList);
+                FileManipulation.ListFiles(todoList);
             }
-            if(firstInput == "a")
+            if (firstInput == "a")
             {
                 Console.WriteLine("Enter the name of the to do: ");
                 string newTodo = Console.ReadLine();
-                fileManipulation.AddItem(newTodo, todoList);
-                Console.WriteLine(todoList);
+                FileManipulation.AddItem(newTodo, todoList);
             }
             Console.ReadLine();
         }
