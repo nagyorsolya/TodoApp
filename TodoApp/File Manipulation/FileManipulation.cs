@@ -15,5 +15,12 @@ namespace TodoApp.File_Manipulation
                 Console.WriteLine(i + 1 + ". " + list[i]);
             }
         }
+        public void AddItem(string newTodo, string[] list)
+        {
+            Array.Resize(ref list, list.Length + 1);
+            list[list.Length - 1] = newTodo;
+            Console.WriteLine("New todo is added to the list.");
+            Console.WriteLine(list);
+        }
     }
 }

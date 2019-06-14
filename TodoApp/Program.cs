@@ -19,6 +19,13 @@ namespace TodoApp
             {
                 fileManipulation.ListFiles(todoList);
             }
+            if(firstInput == "a")
+            {
+                Console.WriteLine("Enter the name of the to do: ");
+                string newTodo = Console.ReadLine();
+                fileManipulation.AddItem(newTodo, todoList);
+                Console.WriteLine(todoList);
+            }
             Console.ReadLine();
         }
     }
