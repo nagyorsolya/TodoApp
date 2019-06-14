@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TodoApp.File_Manipulation;
 
 namespace TodoApp
 {
@@ -10,10 +11,13 @@ namespace TodoApp
     {
         static void Main(string[] args)
         {
-            string[] todoList = System.IO.File.ReadAllLines(@"C:\Test.txt");
-            for ( int i = 0; i < todoList.Length; i++)
+            FileManipulation fileManipulation = new FileManipulation();
+            string[] todoList = System.IO.File.ReadAllLines(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt");
+            Console.WriteLine("What would you like to do today?: " + "\n" + "l - list todos" + "\n" + "a - add todo" + "\n" + "r - remove todo" + "\n" + "c - complete todo");
+            string firstInput = Console.ReadLine();
+            if (firstInput == "l")
             {
-                Console.WriteLine(i+1 + ". " + todoList[i]);
+                fileManipulation.ListFiles(todoList);
             }
             Console.ReadLine();
         }
