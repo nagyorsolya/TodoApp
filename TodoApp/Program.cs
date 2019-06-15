@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TodoApp.File_Manipulation;
+using TodoApp.Tasks;
 
 namespace TodoApp
 {
@@ -33,9 +34,10 @@ namespace TodoApp
                             int inputNumber = Convert.ToInt32(Console.ReadLine());
                             FileManipulation.RemoveItem(inputNumber, todoList);
                         }
-                        catch (Exception)
+                        catch (FormatException error)
                         {
-                            Console.WriteLine("Unable to check: index is not a number.");
+                            //Console.WriteLine("Unable to check: index is not a number.");
+                            Console.WriteLine(error.Message);
                         }
                         break;
                     case "c":
