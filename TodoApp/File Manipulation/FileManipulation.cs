@@ -16,12 +16,12 @@ namespace TodoApp.File_Manipulation
             }
             for (int i = 0; i < list.Count; i++)
             {
-                Console.WriteLine(i + 1 + ". " + list[i]);
+                Console.WriteLine(list[i]);
             }
         }
         public static void AddItem(string newTodo, List<string> list)
         {
-            list.Add(newTodo);
+            list.Add(list.Count+1 + ". [ ] " + newTodo);
             Console.WriteLine("New todo is added to the list.");
         }
         public static void RemoveItem(int inputNumber, List<string> list)
@@ -35,6 +35,19 @@ namespace TodoApp.File_Manipulation
             {
                 Console.WriteLine("Unable to check: index is out of bound.");
             }
+        }
+        public static void WriteToFile(string pathToFile, List<string> lines)
+        {
+            System.IO.File.WriteAllLines(pathToFile, lines);
+
+        }
+        public static void CompleteTask(int inputNumber, List<string> list)
+        {
+            string elementToModify = list[(inputNumber-1)];
+            StringBuilder sb = new StringBuilder(elementToModify);
+            sb[4] = 'X';
+            elementToModify = sb.ToString();
+            list[(inputNumber - 1)] = elementToModify;
         }
     }
 }

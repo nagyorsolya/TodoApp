@@ -1,5 +1,5 @@
-One
-Two
-Three
-Walk dog
-aaa
+1. [ ] One
+2. [ ] Two
+3. [ ] Three
+4. [ ] Walk the dog
+5. [X] Do something

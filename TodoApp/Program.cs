@@ -38,8 +38,14 @@ namespace TodoApp
                             Console.WriteLine("Unable to check: index is not a number.");
                         }
                         break;
+                    case "c":
+                        Console.WriteLine("Enter the number of the task you want to complete: ");
+                        int input = Convert.ToInt32(Console.ReadLine());
+                        FileManipulation.CompleteTask(input, todoList);
+                        FileManipulation.ListFiles(todoList);
+                        break;
                     case "q":
-                        //This will write the list items to the file
+                        FileManipulation.WriteToFile(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt", todoList);
                         break;
                     default:
                         Console.WriteLine("Please enter a valid command.");
