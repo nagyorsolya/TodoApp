@@ -28,13 +28,21 @@ namespace TodoApp
                     case "r":
                         Console.WriteLine("Enter the number of the task you want to remove: ");
                         FileManipulation.ListFiles(todoList);
-                        int inputNumber = Convert.ToInt32(Console.ReadLine());
-                        FileManipulation.RemoveItem(inputNumber, todoList);
+                        try
+                        {
+                            int inputNumber = Convert.ToInt32(Console.ReadLine());
+                            FileManipulation.RemoveItem(inputNumber, todoList);
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Unable to check: index is not a number.");
+                        }
                         break;
                     case "q":
                         //This will write the list items to the file
                         break;
                     default:
+                        Console.WriteLine("Please enter a valid command.");
                         break;
                 }
             }

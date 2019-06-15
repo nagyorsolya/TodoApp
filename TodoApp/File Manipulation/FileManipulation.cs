@@ -33,7 +33,7 @@ namespace TodoApp.File_Manipulation
             }
             else
             {
-                Console.WriteLine("No such item was found in your list.");
+                Console.WriteLine("Unable to check: index is out of bound.");
             }
         }
     }
