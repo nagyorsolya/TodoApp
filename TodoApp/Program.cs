@@ -10,8 +10,16 @@ namespace TodoApp
     {
         static void Main(string[] args)
         {
-                List<string> todoList = System.IO.File.ReadAllLines(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt").ToList<string>();
-            Console.WriteLine("What would you like to do today?: \nl - list todos\na - add todo\nr - remove todo\nc - complete todo\nq - exit");
+            List<string> todoList = new List<string>();
+            try
+            {
+                todoList = FileManipulation.ReadFile(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt").ToList<string>();
+            }
+            catch (MissingFieldException error)
+            {
+                Console.WriteLine(error);
+                return;
+            }
             string firstInput = string.Empty;
             while (firstInput != "q")
             {
@@ -36,7 +44,6 @@ namespace TodoApp
                         }
                         catch (FormatException error)
                         {
-                            //Console.WriteLine("Unable to check: index is not a number.");
                             Console.WriteLine(error.Message);
                         }
                         break;

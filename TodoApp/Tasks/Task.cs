@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TodoApp.Tasks
 {
-  public class Task
+    public class Task
     {
-       public string name;
-       public bool isCompleted = false;
+        public string name;
+        public bool isCompleted = false;
         public Task(string name, bool isCompleted)
         {
             this.name = name;
