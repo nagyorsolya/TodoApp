@@ -21,12 +21,20 @@ namespace TodoApp.File_Manipulation
         }
         public static void AddItem(string newTodo, List<string> list)
         {
-            using (System.IO.StreamWriter file =
-           new System.IO.StreamWriter(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt", true))
-            {
-                file.WriteLine(newTodo);
-            }
+            list.Add(newTodo);
             Console.WriteLine("New todo is added to the list.");
+        }
+        public static void RemoveItem(int inputNumber, List<string> list)
+        {
+            if (inputNumber <= list.Count)
+            {
+            list.RemoveAt((inputNumber - 1));
+            Console.WriteLine("Task was succesfully removed!");
+            }
+            else
+            {
+                Console.WriteLine("No such item was found in your list.");
+            }
         }
     }
 }
