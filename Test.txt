@@ -1,5 +1,3 @@
-1. [ ] One
-2. [ ] Two
-3. [ ] Three
-4. [ ] Walk the dog
-5. [X] Do something
+1. [ ] Two
+2. [ ] Walk the dog
+3. [ ] Love Geri

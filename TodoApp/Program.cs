@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using TodoApp.File_Manipulation;
+using TodoApp.Task_Operations;
 using TodoApp.Tasks;
+
 
 namespace TodoApp
 {
@@ -10,16 +12,23 @@ namespace TodoApp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello, please enter the path to your to do list: ");
+            string toDoPath = Console.ReadLine();
+            if (toDoPath == "orsi")
+            {
+                toDoPath = @"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt";
+            }
             List<string> todoList = new List<string>();
             try
             {
-                todoList = FileManipulation.ReadFile(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt").ToList<string>();
+                todoList = FileManipulation.ReadFile(toDoPath).ToList<string>();
             }
             catch (MissingFieldException error)
             {
                 Console.WriteLine(error);
                 return;
             }
+            List<Task> taskList = TaskOperations.FromStringToTask(todoList);
             string firstInput = string.Empty;
             while (firstInput != "q")
             {
@@ -27,20 +36,20 @@ namespace TodoApp
                 switch (firstInput)
                 {
                     case "l":
-                        FileManipulation.ListFiles(todoList);
+                        TaskOperations.ListTasks(taskList);
                         break;
                     case "a":
                         Console.WriteLine("Enter the name of the to do: ");
                         string newTodo = Console.ReadLine();
-                        FileManipulation.AddItem(newTodo, todoList);
+                        TaskOperations.AddItem(newTodo, taskList);
                         break;
                     case "r":
                         Console.WriteLine("Enter the number of the task you want to remove: ");
-                        FileManipulation.ListFiles(todoList);
+                        TaskOperations.ListTasks(taskList);
                         try
                         {
                             int inputNumber = Convert.ToInt32(Console.ReadLine());
-                            FileManipulation.RemoveItem(inputNumber, todoList);
+                            TaskOperations.RemoveItem(inputNumber, taskList);
                         }
                         catch (FormatException error)
                         {
@@ -50,11 +59,12 @@ namespace TodoApp
                     case "c":
                         Console.WriteLine("Enter the number of the task you want to complete: ");
                         int input = Convert.ToInt32(Console.ReadLine());
-                        FileManipulation.CompleteTask(input, todoList);
-                        FileManipulation.ListFiles(todoList);
+                        TaskOperations.CompleteTask(input, taskList);
+                        TaskOperations.ListTasks(taskList);
                         break;
                     case "q":
-                        FileManipulation.WriteToFile(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt", todoList);
+                        todoList = TaskOperations.FromTaskToString(taskList);
+                        FileManipulation.WriteToFile(toDoPath, todoList);
                         break;
                     default:
                         Console.WriteLine("Please enter a valid command.");
