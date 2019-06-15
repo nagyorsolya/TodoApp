@@ -21,7 +21,11 @@ namespace TodoApp.File_Manipulation
         }
         public static void AddItem(string newTodo, List<string> list)
         {
-            list.Add(newTodo);
+            using (System.IO.StreamWriter file =
+           new System.IO.StreamWriter(@"C:\Users\Nagy Orsi\Documents\C#\TodoApp\Test.txt", true))
+            {
+                file.WriteLine(newTodo);
+            }
             Console.WriteLine("New todo is added to the list.");
         }
     }
